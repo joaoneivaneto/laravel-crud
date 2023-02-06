@@ -19,4 +19,21 @@ class UsuariosController extends Controller
         return redirect::to('/usuarios');
 
     }
+    public function edit( $id ){
+        $usuario = Usuario::findOrFail($id);
+        return view('usuarios.form',['usuario' => $usuario]);
+
+    }
+    public function update(Request $request, $id){
+        $usuario = Usuario::findOrFail($id);
+        $usuario -> update($request ->all());
+        return redirect::to('/usuarios');
+
+    }
+    public function delete($id){
+        $usuario = Usuario::findOrFail($id);
+        $usuario -> delete();
+        return redirect::to('/usuarios');
+
+    }
 }

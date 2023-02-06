@@ -15,9 +15,40 @@
                     @endif
 
                     <h1>Lista Dos usuários</h1>
-                    @foreach($usuarios as $u)
-                    <p>{{$u-> name}} |  {{$u -> email }}</p>
-                    @endforeach
+
+                    <table class="table">
+                        <thead>
+                          <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Nome</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">editar</th>
+                            <th scope="col">Deletar</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                         @foreach($usuarios as $u)
+
+
+                            <tr>
+                                <th scope="row">{{$u -> id }}</th>
+                                <td>{{$u -> name }}</td>
+                                <td>{{$u -> email }}</td>
+                                <td>
+                                    <a href="usuarios/{{$u -> id}}/edit" class="btn btn-info">editar</button>
+                                </td>
+                                <td>
+                                    <form action="usuarios/delete/{{$u->id}}" method="post">
+                                        @csrf
+                                        @method('delete')
+                                        <button class="btn btn-primary">deletar</button>
+                                    </form>
+
+                                </td>
+                            </tr>
+                          @endforeach
+                        </tbody>
+                      </table>
                 </div>
             </div>
         </div>
